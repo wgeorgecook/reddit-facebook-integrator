@@ -1,3 +1,5 @@
 settings.py
-__pychache__
-.vagrant
+__pychache__/
+.vagrant/
+*.pyo
+*.pyc
