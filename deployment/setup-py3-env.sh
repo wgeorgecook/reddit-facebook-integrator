@@ -11,15 +11,15 @@ if [ -e "$lockfile" ]; then
 
 
     # Cat-ing out the requirements txt to make sure it's populated
-    cat ~/requirements.txt
+    cat ~/reddit-facebook-integrator/requirements.txt
     sleep 10
 
 
     # Run pip install on requirements to pick up new packages
-    ~/python3_env/bin/pip install -r ~/deployment/requirements.txt
+    ~/python3_env/bin/pip install -r ~/reddit-facebook-integrator/deployment/requirements.txt
 else
     # Setup the env
-    virtualenv -p /usr/bin/python3  ~/python3_env
+    virtualenv -p /usr/bin/python3  ~/python3_env/
 
     # Cat-ing out the requirements txt to make sure it's populated
     cat ~/deployment/requirements.txt
@@ -29,7 +29,7 @@ else
     ~/python3_env/bin/pip install --upgrade
 
     # Pip install the requirements
-    ~/python3_env/bin/pip install -r ~/deployment/requirements.txt
+    ~/python3_env/bin/pip install -r ~/reddit-facebook-integrator/deployment/requirements.txt
 
     # Make this env activate on log in
     echo "source ~/python3_env/bin/activate" >> ~/.profile
