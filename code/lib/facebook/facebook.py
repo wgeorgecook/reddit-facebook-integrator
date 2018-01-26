@@ -2,11 +2,10 @@
 
 from fbchat import Client
 from fbchat.models import *
-
 from settings import FACEBOOK_SETTINGS
-
-
 from lib.reddit.reddit import Reddinterface
+import random
+
 
 
 class Facebookface(object):
@@ -18,9 +17,19 @@ class Facebookface(object):
     """
 
     def __init__(self):
-      self.client = Client(FACEBOOK_SETTINGS.get('email'), FACEBOOK_SETTINGS.get('password'))  
+      self.client = Client(FACEBOOK_SETTINGS.get('email'), FACEBOOK_SETTINGS.get('password'))
+      self.session_cookies = self.client.getSession()
+      self.client.setSession(self.session_cookies)  
       self.username = FACEBOOK_SETTINGS.get('desired_username')
       self.redditing = Reddinterface()
+      self.prompts = [
+            "Neato!", 
+            "Check out this thing I think is cool", 
+            "How neat is that?", 
+            "That's pretty neat!", 
+            "Check it",
+            "Is this spam good enough?"
+            ]
 
     def get_fb_users(self):
         user_list = [self.client.fetchAllUsers()]
@@ -30,6 +39,9 @@ class Facebookface(object):
         return user_dict[self.username]
 
     def send_message(self):
-        self.client.send(Message(text='Check out this thing I think is cool: {}'.format(self.redditing.check_upvotes())), thread_id=self.get_fb_users(), thread_type=ThreadType.USER)
-        self.client.logout()
-
+        if self.redditing.check_upvotes() is False:
+            print("Will not send duplicate message")
+        else:
+            self.client.send(Message(text='{}: \n{}\n{}'.format(random.choice(self.prompts),  self.redditing.get_title(), self.redditing.get_url())), thread_id=self.get_fb_users(), thread_type=ThreadType.USER)
+            self.client.logout()
+            print("Message sent to {}".format(self.username))

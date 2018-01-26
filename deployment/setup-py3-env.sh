@@ -11,6 +11,7 @@ if [ -e "$lockfile" ]; then
 
 
     # Cat-ing out the requirements txt to make sure it's populated
+    echo "Will install these pip dependencies: \n"
     cat ~/reddit-facebook-integrator/requirements.txt
     sleep 10
 
@@ -22,6 +23,7 @@ else
     virtualenv -p /usr/bin/python3  ~/python3_env/
 
     # Cat-ing out the requirements txt to make sure it's populated
+    echo "Will install these pip dependencies: \n"
     cat ~/deployment/requirements.txt
     sleep 10
 

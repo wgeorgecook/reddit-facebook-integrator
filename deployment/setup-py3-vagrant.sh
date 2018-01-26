@@ -11,6 +11,7 @@ if [ -e "$lockfile" ]; then
 
 
     # Cat-ing out the requirements txt to make sure it's populated
+    echo "Will install these pip dependencies: "
     cat /home/vagrant/deployment/requirements.txt
     sleep 10
 
@@ -21,7 +22,11 @@ else
     # Setup the env
     virtualenv -p /usr/bin/python3  /home/vagrant/python3_env
 
+    # Activate the env 
+    source /home/vagrant/python3_env/bin/activate
+
     # Cat-ing out the requirements txt to make sure it's populated
+    echo "Will install these pip dependencies: "
     cat /home/vagrant/deployment/requirements.txt
     sleep 10
 
@@ -32,7 +37,7 @@ else
     /home/vagrant/python3_env/bin/pip install -r /home/vagrant/deployment/requirements.txt
 
     # Make this env activate on log in
-    echo "source ~/python3_env/bin/activate" >> ~/.profile
+    echo "source /home/vagrant/python3_env/bin/activate" >> ~/.profile
 
     # Place the lockfile
     touch /home/vagrant/install-python3.lock

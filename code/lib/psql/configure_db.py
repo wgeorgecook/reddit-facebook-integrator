@@ -12,7 +12,7 @@ class MakeDB(object):
         self.dbuser = DB_SETTINGS.get('user')
         self.dbpass = DB_SETTINGS.get('password')
         self.dbhost = DB_SETTINGS.get('host')
-        self.check_exist = "SELECT * FROM reddit_info"
+        self.check_exist = "SELECT * FROM RedditInfo"
 
         self.psql_db = PostgresqlDatabase(
             self.dbconnection,
@@ -43,7 +43,7 @@ class MakeDB(object):
                 return True
             else:
                 print("##### Creating DB tables #####")
-                self.psql_db.create_table(reddit_info)
+                self.psql_db.create_table(RedditInfo)
                 self.psql_db.close()
                 print("##### DB configured! #####")
                 return True
