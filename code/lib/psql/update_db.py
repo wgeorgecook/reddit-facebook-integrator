@@ -16,11 +16,11 @@ psql_db = PostgresqlDatabase(
     )
 
 class DB(object):
+
     """
     Connects to a Postgresl database.
     Searches database for the upvoted post ID
     and returns True/False based on findings
-
     """
 
     def __init__(self, post_id, post_title, post_url):
@@ -44,7 +44,7 @@ class DB(object):
 
     def post_upvote_info(self):
 
-        # if self.search_posts(self.post_id) is False:
+        
         self.open_connection()
         posting = RedditInfo(
             

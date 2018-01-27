@@ -5,6 +5,12 @@ from lib.psql.update_db import DB
 from settings import REDDIT_SETTINGS
 
 class Reddinterface(object):
+
+    """
+    Gathers relevant data from Reddit, 
+    checks them against the psql database, 
+    and returns them to the Facebook library.
+    """
     
     def __init__(self):
         self.reddit = praw.Reddit(client_id=REDDIT_SETTINGS.get("client_id"), client_secret=REDDIT_SETTINGS.get("client_secret"), user_agent=REDDIT_SETTINGS.get("user_agent"), username=REDDIT_SETTINGS.get('username'), password=REDDIT_SETTINGS.get('password'))
@@ -34,19 +40,3 @@ class Reddinterface(object):
     def get_id(self):
         for upv in self.redditor1.upvoted(limit=1):
             return upv.id
-       
-
-        
-"""
-
-Old method
-
-
-    def check_upvotes(self):
-        for upv in self.redditor1.upvoted(limit=1):
-            if upv.id not in self.upvote_list:
-                print("{} recently upvoted".format(upv.title))
-                print("Adding {} to the upvote db".format(upv.id))
-                self.upvote_list.append(upv.id)
-                return upv.url
-"""
