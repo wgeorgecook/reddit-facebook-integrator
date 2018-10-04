@@ -1,6 +1,6 @@
 # Settings for Facebook and Reddit
 
-FACEBOOK_SETTINGS = { 
+FACEBOOK_SETTINGS = {
     "email":"your-email",
     "password":"your-password",
     "desired_username":"Other-user"
@@ -11,7 +11,7 @@ REDDIT_SETTINGS = {
     "client_secret":'your secret',
     "password":'your password',
     "user_agent":'your app by /u/you',
-    "username":'you')
+    "username":'you'
 }
 
 DB_SETTINGS = {
