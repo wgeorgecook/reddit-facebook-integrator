@@ -12,12 +12,12 @@ if [ -e "$lockfile" ]; then
 
     # Cat-ing out the requirements txt to make sure it's populated
     echo "Will install these pip dependencies: \n"
-    cat ~/reddit-facebook-integrator/requirements.txt
+    cat ~/requirements.txt
     sleep 10
 
 
     # Run pip install on requirements to pick up new packages
-    ~/python3_env/bin/pip install -r ~/reddit-facebook-integrator/deployment/requirements.txt
+    ~/python3_env/bin/pip install -r ~/deployment/requirements.txt
 else
     # Setup the env
     virtualenv -p /usr/bin/python3  ~/python3_env/
@@ -31,12 +31,12 @@ else
     ~/python3_env/bin/pip install --upgrade
 
     # Pip install the requirements
-    ~/python3_env/bin/pip install -r ~/reddit-facebook-integrator/deployment/requirements.txt
+    ~/python3_env/bin/pip install -r ~/deployment/requirements.txt
 
     # Make this env activate on log in
     echo "source ~/python3_env/bin/activate" >> ~/.profile
 
     # Place the lockfile
-    touch ~install-python3.lock
+    touch ~/install-python3.lock
     echo "Python 3 setup complete"
 fi
